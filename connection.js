@@ -1,18 +1,16 @@
-const mysql = require('mysql')
+const {Sequelize} =require('sequelize')
 
-const db = mysql.createConnection({
-    host: 'containers-us-west-149.railway.app',
-    user: 'root',
-    password: 'wr44oBJbRZyq6Qrbtyo7',
-    database: 'railway'
-})
+const db = new Sequelize('mysql://root:Ux36GS0dmP9YjAUM0PLm@containers-us-west-178.railway.app:5612/railway')
 
-// db.connect((err) => {
-//     if (err) {
-//         throw err
-//     }
-//     console.log('database connected')
-// })
+async function testDatabaseConnection() {
+    try {
+      await db.authenticate();
+      console.log('Koneksi ke database berhasil.');
+    } catch (error) {
+      console.error('Koneksi ke database gagal:', error);
+    } 
+}
 
 
+testDatabaseConnection()
 module.exports = db
