@@ -6,6 +6,9 @@ const db = require('./connection')
 
 const app = express()
 app.use(cors())
+app.use(cors({
+    origin: '*' // Mengizinkan permintaan dari semua domain
+  }));  
 app.use(express.json())
 app.use(bodyParser.raw())
 app.use(bodyParser.json())

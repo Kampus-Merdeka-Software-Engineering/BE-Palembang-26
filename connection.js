@@ -1,4 +1,4 @@
-const {Sequelize} =require('sequelize')
+const {Sequelize} =require ('sequelize')
 
 const db = new Sequelize('mysql://root:Ux36GS0dmP9YjAUM0PLm@containers-us-west-178.railway.app:5612/railway')
 
