@@ -5,13 +5,23 @@ const db = require('./connection')
 
 
 const app = express()
-app.use(cors())
-app.use(cors({
-    origin: '*' // Mengizinkan permintaan dari semua domain
-  }));  
 app.use(express.json())
 app.use(bodyParser.raw())
 app.use(bodyParser.json())
+
+app.use(cors())
+const allowedOrigins = ['https://fe-palembang-26-fetch.up.railway.app'];
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Akses Ditolak oleh Kebijakan CORS'));
+      }
+    },
+    credentials: true, // Jika menggunakan kredensial seperti cookie atau header otentikasi
+}));
+
 
 // endpoint signUp
 app.post('/user', (req, res) => {
@@ -26,8 +36,6 @@ app.post('/user', (req, res) => {
             res.json(fields)
         }
     })
-    res.header('Access-Control-Allow-Origin', 'https://fe-palembang-26-fetch.up.railway.app'); 
-    res.json({ data: 'Data API' });
 })
 
 // endpoint chat consultation
