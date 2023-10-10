@@ -26,7 +26,7 @@ app.post('/user', (req, res) => {
             res.json(fields)
         }
     })
-    res.header('Access-Control-Allow-Origin', 'https://fe-palembang-26.up.railway.app/'); 
+    res.header('Access-Control-Allow-Origin', 'https://fe-palembang-26-fetch.up.railway.app'); 
     res.json({ data: 'Data API' });
 })
 
